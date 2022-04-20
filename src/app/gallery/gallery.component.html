@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <select
+      class="form-select form-select-md mt-3 w-50"
+      [ngModel]="albumSelectedId"
+      (ngModelChange)="onAlbumChange($event)"
+    >
+      <option value="-1">Select Gallery</option>
+      <option *ngFor="let i of albumIds$ | async" [value]="i">
+        {{ i }}
+      </option>
+    </select>
+  </div>
+
+  <div class="row">
+    <div
+      *ngFor="let item of allAlbums$ | async"
+      class="card m-3 mx-auto"
+      style="width: 18rem"
+    >
+      <img
+        alt="images"
+        src="{{ item.thumbnailUrl }}"
+        class="card-img-top mt-1"
+        style="height: 150px"
+      />
+      <div class="card-body">
+        <h5 class="card-title">{{ item.title }}</h5>
+        <div>Album ID : {{ item.albumId }}</div>
+      </div>
+    </div>
+  </div>
+</div>
